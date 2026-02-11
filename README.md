@@ -6,5 +6,5 @@
 3. git commit -m "DESCRIPCION DEL COMMIT" tras hacer cambios
 4. git push
 
->[!NOTE] IMPORTANTE
-> Los pasos 2 y 3 se pueden mezclar haciendo git commit -am "DESCRIPCION". Equivale a hacr un git add . y luego el commit
+>IMPORTANTE
+>Los pasos 2 y 3 se pueden mezclar haciendo git commit -am "DESCRIPCION". Equivale a hacr un git add . y luego el commit
