@@ -32,7 +32,7 @@ int main(){
 		finalFile.close();
 		showBoard();
 	} else {
-		cout <<"Fichero de carga no encontrado (<HORAPUNTA>/" << file <<endl;
+		cout <<"Fichero de carga no encontrado (<HORAPUNTA>/" << file << ")" <<endl;
 	}
 
 	return 0;
