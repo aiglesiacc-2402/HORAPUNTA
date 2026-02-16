@@ -133,7 +133,7 @@ char moveLeft(){
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	board[i][j-size] = 'X'; // Ponemos la X en su nueva posición
-	updateXCoords(i, j-size) // Actualizamos la posición de la X
+	updateXCoords(i, j-size); // Actualizamos la posición de la X
 
 	return car;
 }
@@ -152,7 +152,7 @@ char moveRight(){
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	board[i][j+size] = 'X'; // Ponemos la X en su nueva posición
-	updateXCoords(i, j+size) // Actualizamos la posición de la X
+	updateXCoords(i, j+size); // Actualizamos la posición de la X
 
 	return car;
 }
@@ -171,7 +171,7 @@ char moveUp(){
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	board[i-size][j] = 'X'; // Ponemos la X en su nueva posición
-	updateXCoords(i-size, j) // Actualizamos la posición de la X
+	updateXCoords(i-size, j); // Actualizamos la posición de la X
 
 	return car;
 }
@@ -189,8 +189,8 @@ char moveDown(){
 
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
-	board[i+size][j] = 'X';; // Ponemos la X en su nueva posición
-	updateXCoords(i+size, j) // Actualizamos la posición de la X
+	board[i+size][j] = 'X'; // Ponemos la X en su nueva posición
+	updateXCoords(i+size, j); // Actualizamos la posición de la X
 
 	return car;
 }
