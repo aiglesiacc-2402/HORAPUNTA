@@ -17,6 +17,20 @@ void showBoard(){
 	}
 }
 
+pair<int,int> buscarX(char board[6][6]){
+	int x,y;
+for(int i = 0; i < 6; i++){
+			for(int j = 0; j < 6; j++){
+			    if(board[i][j] == 'X'){
+                     x = i;
+					 y = j;
+				}
+			}
+		}
+		pair<int,int> position = {x,y};
+	return position;
+}
+
 int main(){
 	ifstream finalFile;
 	finalFile.open("BOARDS/" + file);
