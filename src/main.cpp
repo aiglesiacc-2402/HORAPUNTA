@@ -9,6 +9,11 @@ char board[MAXTAM][MAXTAM];
 int posX[2];
 const string file = "HORAPUNTA3.txt";
 
+void updateXCoords(int i, int j){
+	posX[0] = i;
+	posX[1] = j;
+}
+
 void showBoard(){
 	for(int i = 0; i < MAXTAM; i++){
 		for(int j = 0; j < MAXTAM; j++){
@@ -127,7 +132,8 @@ char moveLeft(){
 
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
-	board[i][j-size] = 'X';
+	board[i][j-size] = 'X'; // Ponemos la X en su nueva posición
+	updateXCoords(i, j-size) // Actualizamos la posición de la X
 
 	return car;
 }
@@ -145,7 +151,8 @@ char moveRight(){
 
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
-	board[i][j+size] = 'X';
+	board[i][j+size] = 'X'; // Ponemos la X en su nueva posición
+	updateXCoords(i, j+size) // Actualizamos la posición de la X
 
 	return car;
 }
@@ -163,7 +170,8 @@ char moveUp(){
 
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
-	board[i-size][j] = 'X';
+	board[i-size][j] = 'X'; // Ponemos la X en su nueva posición
+	updateXCoords(i-size, j) // Actualizamos la posición de la X
 
 	return car;
 }
@@ -174,14 +182,15 @@ char moveDown(){
 	int j = posX[1];
 	char car = board[i+1][j];
 	int size = 1;
-	while((i-size) < MAXTAM && board[i-size][j]==car){ // Buscamos el tamanio del coche
+	while((i+size) < MAXTAM && board[i+size][j]==car){ // Buscamos el tamanio del coche
 		size++;
 	}
 	size--; // Pero tenemos que restarle uno por la última vuelta del bucle
 
 	// Hacemos el cambio de la x por la cola del coche
 	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
-	board[i-size][j] = 'X';
+	board[i+size][j] = 'X';; // Ponemos la X en su nueva posición
+	updateXCoords(i+size, j) // Actualizamos la posición de la X
 
 	return car;
 }
@@ -197,8 +206,7 @@ int main(){
 			for(int j = 0; j < MAXTAM; j++){
 			    board[i][j] = row[j*2];
 				if(board[i][j] == 'X'){
-					posX[0] = i;
-					posX[1] = j;
+					updateXCoords(i, j);
 				}
 			}
 		}
