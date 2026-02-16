@@ -114,6 +114,78 @@ bool canMove(){
 	return canMoveDown() || canMoveRight() || canMoveUp() || canMoveLeft();
 }
 
+// Pre: puedo mover a la izquierda de la x
+char moveLeft(){
+	int i = posX[0];
+	int j = posX[1];
+	char car = board[i][j-1];
+	int size = 1;
+	while((j-size) >= 0 && board[i][j-size]==car){ // Buscamos el tamanio del coche
+		size++;
+	}
+	size--; // Pero tenemos que restarle uno por la última vuelta del bucle
+
+	// Hacemos el cambio de la x por la cola del coche
+	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
+	board[i][j-size] = 'X';
+
+	return car;
+}
+
+// Pre: puedo mover a la derecha de la x
+char moveRight(){
+	int i = posX[0];
+	int j = posX[1];
+	char car = board[i][j+1];
+	int size = 1;
+	while((j+size) < MAXTAM && board[i][j+size]==car){ // Buscamos el tamanio del coche
+		size++;
+	}
+	size--; // Pero tenemos que restarle uno por la última vuelta del bucle
+
+	// Hacemos el cambio de la x por la cola del coche
+	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
+	board[i][j+size] = 'X';
+
+	return car;
+}
+
+// Pre: puedo mover arriba de la x
+char moveUp(){
+	int i = posX[0];
+	int j = posX[1];
+	char car = board[i-1][j];
+	int size = 1;
+	while((i-size) >= 0 && board[i-size][j]==car){ // Buscamos el tamanio del coche
+		size++;
+	}
+	size--; // Pero tenemos que restarle uno por la última vuelta del bucle
+
+	// Hacemos el cambio de la x por la cola del coche
+	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
+	board[i-size][j] = 'X';
+
+	return car;
+}
+
+// Pre: puedo mover arriba de la x
+char moveDown(){
+	int i = posX[0];
+	int j = posX[1];
+	char car = board[i+1][j];
+	int size = 1;
+	while((i-size) < MAXTAM && board[i-size][j]==car){ // Buscamos el tamanio del coche
+		size++;
+	}
+	size--; // Pero tenemos que restarle uno por la última vuelta del bucle
+
+	// Hacemos el cambio de la x por la cola del coche
+	board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
+	board[i-size][j] = 'X';
+
+	return car;
+}
+
 int main(){
 	ifstream finalFile;
 	finalFile.open("BOARDS/" + file);
@@ -134,15 +206,23 @@ int main(){
 		showBoard();
 		if(canMoveUp()){
 			cout<<"Up"<<endl;
+			moveUp();
+			showBoard();
 		}
 		if(canMoveDown()){
 			cout<<"Down"<<endl;
+			moveDown();
+			showBoard();
 		}
 		if(canMoveLeft()){
 			cout<<"Left"<<endl;
+			moveLeft();
+			showBoard();
 		}
 		if(canMoveRight()){
 			cout<<"Right"<<endl;
+			moveRight();
+			showBoard();
 		}
 	} else {
 		cout <<"Fichero de carga no encontrado (<HORAPUNTA>/" << file << ")" <<endl;
