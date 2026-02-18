@@ -28,6 +28,8 @@ void showBoard(const Board b);
 
 void addToSolution(Board &b, char toAdd);
 
+bool canMove(const Board b);
+
 bool canMoveUp(const Board b);
 
 bool canMoveDown(const Board b);

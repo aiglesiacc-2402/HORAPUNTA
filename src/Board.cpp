@@ -51,6 +51,11 @@ void addToSolution(Board &b, char toAdd){
 	b.solution = b.solution + " " + toAdd;
 }
 
+bool canMove(const Board b){
+	return canMoveUp(b) || canMoveDown(b) || canMoveLeft(b) || canMoveRight(b);
+}
+
+
 bool canMoveUp(const Board b){
 	int i = b.posX[0];
 	int j = b.posX[1];
