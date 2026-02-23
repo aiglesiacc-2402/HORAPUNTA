@@ -15,12 +15,18 @@ const int MAX_COLUMNS = 6;
 struct Board{
     char board[6][6];
     int posX[2];
+    int posZ[2];
     string solution;
+    int h;
 };
+
+int heuristica(Board &b);
 
 void loadBoard(Board &b, string file);
 
 void updateXCoords(Board &b, int i, int j);
+
+void updateZCoords(Board &b, int i, int j);
 
 void copyBoard(Board b, Board &b2);
 
