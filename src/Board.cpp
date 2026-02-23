@@ -4,9 +4,10 @@
 int heuristica(Board &b){
 	int max_dist_H = ceil(MAX_COLUMNS/2);
 	int max_dist_V = ceil(MAX_ROWS/2);
+	int disZ = 0;
 	int disX = 0;
 	// Calcular distancia de Z al borde
-	int disZ = min((b.posZ[0] % max_dist_H), (b.posZ[1] % max_dist_V));
+	disZ = min((b.posZ[0] % max_dist_H), (b.posZ[1] % max_dist_V));
 
 	// Calcular distancia de X a Z
 	if(disZ != 0){
@@ -71,6 +72,7 @@ void copyBoard(Board b, Board &b2){
 		b2.posZ[i] = b.posZ[i];
 	}
 	b2.solution = b.solution;
+	b2.h = b.h;
 }
 
 void showBoard(const Board b){
@@ -204,6 +206,8 @@ char moveUp(Board &b){
 	if (car == 'Z'){
 		updateZCoords(b, i, j); // Actualizamos la posición de la Z
 	}
+
+	b.h = heuristica(b);
 	return car;
 }
 
@@ -226,6 +230,7 @@ char moveDown(Board &b){
 		updateZCoords(b, i, j); // Actualizamos la posición de la Z
 	}
 
+	b.h = heuristica(b);
 	return car;
 }
 
@@ -248,6 +253,7 @@ char moveLeft(Board &b){
 		updateZCoords(b, i, j); // Actualizamos la posición de la Z
 	}
 
+	b.h = heuristica(b);
 	return car;
 }
 
@@ -270,6 +276,7 @@ char moveRight(Board &b){
 		updateZCoords(b, i, j); // Actualizamos la posición de la Z
 	}
 
+	b.h = heuristica(b);
 	return car;
 }
 
