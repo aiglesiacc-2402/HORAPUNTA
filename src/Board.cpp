@@ -1,5 +1,27 @@
 #include "Board.h"
 
+int heuristica(Board &b, int &disV, int &disV){
+	// Calcular distancia de Z al borde
+	if(posZ[0] < MAX_COLUMS/2){
+		disH = posZ[0];
+	} else {
+		disH = MAX_COLUMNS
+	}
+	disH = min(posZ[0] % (MAX_COLUMNS/2+1), )
+
+	// Calcular distancia de X a Z
+	if(posX[0]>=posZ[0]){
+		disV = posX[0]-posZ[0];
+	}else{
+		disV = posZ[0]-posX[0];
+	}
+	if(posX[1]>=posZ[1]){
+		disV = posX[1]-posZ[1] + disV;
+	}else{
+		disV = posZ[1]-posX[1] + disV;
+	}
+}
+
 void loadBoard(Board &b, string file){
     ifstream finalFile;
 	finalFile.open("BOARDS/" + file);
@@ -14,6 +36,10 @@ void loadBoard(Board &b, string file){
 					b.posX[0] = i;
 					b.posX[1] = j;
 				}
+				if(row[j*2] == 'Z'){
+					b.posZ[0] = i;
+					b.posZ[1] = j;
+				}
 			}
 		}
 		finalFile.close();
@@ -27,6 +53,10 @@ void updateXCoords(Board &b, int i, int j){
 	b.posX[1] = j;
 }
 
+void updateZCoords(Board &b, int i, int j){
+	b.posZ[0] = i;
+	b.posZ[1] = j;
+}
 void copyBoard(Board b, Board &b2){
 	for(int i = 0; i < MAX_ROWS; i++){
 		for(int j = 0; j < MAX_COLUMNS; j++){
@@ -35,6 +65,7 @@ void copyBoard(Board b, Board &b2){
 	}
 	for(int i = 0; i < 2; i++)
 		b2.posX[i] = b.posX[i];
+		b2.posZ[i] = b.posZ[i];
 	b2.solution = b.solution;
 }
 
@@ -226,3 +257,4 @@ char moveRight(Board &b){
 
 	return car;
 }
+
