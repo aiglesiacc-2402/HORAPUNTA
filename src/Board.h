@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <cmath>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ void showBoard(const Board b);
 
 void addToSolution(Board &b, char toAdd);
 
-bool canMove(const Board b);
+bool canMove(const Board &b);
 
 bool canMoveUp(const Board b);
 

@@ -4,22 +4,21 @@
 int heuristica(Board &b){
 	int max_dist_H = ceil(MAX_COLUMNS/2);
 	int max_dist_V = ceil(MAX_ROWS/2);
-	int disZ = 0;
 	int disX = 0;
 	// Calcular distancia de Z al borde
-	int disZ = min((posZ[0] % max_dist_H), (posZ[1] % max_dist_V)) 
+	int disZ = min((b.posZ[0] % max_dist_H), (b.posZ[1] % max_dist_V));
 
 	// Calcular distancia de X a Z
 	if(disZ != 0){
-		if(posX[0]>=posZ[0]){
-			disX = posX[0]-posZ[0];
+		if(b.posX[0] >= b.posZ[0]){
+			disX = b.posX[0]-b.posZ[0];
 		}else{
-			disX = posZ[0]-posX[0];
+			disX = b.posZ[0]-b.posX[0];
 		}
-		if(posX[1]>=posZ[1]){
-			disX += posX[1]-posZ[1];
+		if(b.posX[1] >= b.posZ[1]){
+			disX += b.posX[1]-b.posZ[1];
 		}else{
-			disX += posZ[1]-posX[1];
+			disX += b.posZ[1]-b.posX[1];
 		}
 	}
 	return disX+disZ;
@@ -67,9 +66,10 @@ void copyBoard(Board b, Board &b2){
 			b2.board[i][j] = b.board[i][j];
 		}
 	}
-	for(int i = 0; i < 2; i++)
+	for(int i = 0; i < 2; i++){
 		b2.posX[i] = b.posX[i];
 		b2.posZ[i] = b.posZ[i];
+	}
 	b2.solution = b.solution;
 }
 
@@ -86,7 +86,7 @@ void addToSolution(Board &b, char toAdd){
 	b.solution = b.solution + " " + toAdd;
 }
 
-bool canMove(const Board b){
+bool canMove(const Board &b){
 	return canMoveUp(b) || canMoveDown(b) || canMoveLeft(b) || canMoveRight(b);
 }
 

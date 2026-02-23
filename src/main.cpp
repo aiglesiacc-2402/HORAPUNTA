@@ -12,7 +12,7 @@ int main(){
 		copyBoard(b, b1);
 		addToSolution(b1, moveUp(b1));
 		showBoard(b1);
-		cout<<"Solution:"<<b1.solution<< "with h'= " << b3.h << endl;
+		cout<<"Solution:"<<b1.solution<< "with h'= " << b1.h << endl;
 		cout<<endl;
 	}
 	if(canMoveDown(b)){
@@ -20,7 +20,7 @@ int main(){
 		copyBoard(b, b2);
 		addToSolution(b2, moveDown(b2));
 		showBoard(b2);
-		cout<<"Solution:"<<b2.solution<< "with h'= " << b3.h << endl;
+		cout<<"Solution:"<<b2.solution<< "with h'= " << b2.h << endl;
 		cout<<endl;
 	}
 	if(canMoveLeft(b)){
@@ -36,7 +36,7 @@ int main(){
 		copyBoard(b, b4);
 		addToSolution(b4, moveRight(b4));
 		showBoard(b4);
-		cout<<"Solution:"<<b4.solution<< "with h'= " << b3.h << endl;
+		cout<<"Solution:"<<b4.solution<< "with h'= " << b4.h << endl;
 		cout<<endl;
 	}
     return 0;
