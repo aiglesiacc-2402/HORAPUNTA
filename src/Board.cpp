@@ -1,25 +1,28 @@
 #include "Board.h"
 
-int heuristica(Board &b, int &disV, int &disV){
+// Calcula la suma de la distancia de Z al borde y la distancia de X a Z
+int heuristica(Board &b){
+	int max_dist_H = ceil(MAX_COLUMNS/2);
+	int max_dist_V = ceil(MAX_ROWS/2);
+	int disZ = 0;
+	int disX = 0;
 	// Calcular distancia de Z al borde
-	if(posZ[0] < MAX_COLUMS/2){
-		disH = posZ[0];
-	} else {
-		disH = MAX_COLUMNS
-	}
-	disH = min(posZ[0] % (MAX_COLUMNS/2+1), )
+	int disZ = min((posZ[0] % max_dist_H), (posZ[1] % max_dist_V)) 
 
 	// Calcular distancia de X a Z
-	if(posX[0]>=posZ[0]){
-		disV = posX[0]-posZ[0];
-	}else{
-		disV = posZ[0]-posX[0];
+	if(disZ != 0){
+		if(posX[0]>=posZ[0]){
+			disX = posX[0]-posZ[0];
+		}else{
+			disX = posZ[0]-posX[0];
+		}
+		if(posX[1]>=posZ[1]){
+			disX += posX[1]-posZ[1];
+		}else{
+			disX += posZ[1]-posX[1];
+		}
 	}
-	if(posX[1]>=posZ[1]){
-		disV = posX[1]-posZ[1] + disV;
-	}else{
-		disV = posZ[1]-posX[1] + disV;
-	}
+	return disX+disZ;
 }
 
 void loadBoard(Board &b, string file){
@@ -42,6 +45,7 @@ void loadBoard(Board &b, string file){
 				}
 			}
 		}
+		b.h = heuristica(b);
 		finalFile.close();
 	} else {
 		cout <<"Fichero de carga no encontrado (<HORAPUNTA>/" << file << ")" <<endl;
@@ -197,7 +201,9 @@ char moveUp(Board &b){
 	b.board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	b.board[i-size][j] = 'X'; // Ponemos la X en su nueva posición
 	updateXCoords(b, i-size, j); // Actualizamos la posición de la X
-
+	if (car == 'Z'){
+		updateZCoords(b, i, j); // Actualizamos la posición de la Z
+	}
 	return car;
 }
 
@@ -216,6 +222,9 @@ char moveDown(Board &b){
 	b.board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	b.board[i+size][j] = 'X'; // Ponemos la X en su nueva posición
 	updateXCoords(b, i+size, j); // Actualizamos la posición de la X
+	if (car == 'Z'){
+		updateZCoords(b, i, j); // Actualizamos la posición de la Z
+	}
 
 	return car;
 }
@@ -235,6 +244,9 @@ char moveLeft(Board &b){
 	b.board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	b.board[i][j-size] = 'X'; // Ponemos la X en su nueva posición
 	updateXCoords(b, i, j-size); // Actualizamos la posición de la X
+	if (car == 'Z'){
+		updateZCoords(b, i, j); // Actualizamos la posición de la Z
+	}
 
 	return car;
 }
@@ -254,6 +266,9 @@ char moveRight(Board &b){
 	b.board[i][j] = car; // Ponemos el caracter del coche en el hueco de la X
 	b.board[i][j+size] = 'X'; // Ponemos la X en su nueva posición
 	updateXCoords(b, i, j+size); // Actualizamos la posición de la X
+	if (car == 'Z'){
+		updateZCoords(b, i, j); // Actualizamos la posición de la Z
+	}
 
 	return car;
 }
