@@ -1,13 +1,16 @@
 #include "Board.h"
+#inlcude "Resolver.h"
 
 const string file = "HORAPUNTA1.txt";
 
 int main(){
     Board b;
     loadBoard(b, file);
+	tree.insert(b);
     showBoard(b);
 	cout<<endl;
-    if(canMoveUp(b)){
+	resolve();
+    /*if(canMoveUp(b)){
 		Board b1;
 		copyBoard(b, b1);
 		addToSolution(b1, moveUp(b1));
@@ -38,6 +41,6 @@ int main(){
 		showBoard(b4);
 		cout<<"Solution:"<<b4.solution<< " with h'= " << b4.h << endl;
 		cout<<endl;
-	}
+	}*/
     return 0;
 }

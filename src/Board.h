@@ -19,6 +19,20 @@ struct Board{
     int posZ[2];
     string solution;
     int h;
+    Board *father;
+
+    bool operator<(const Board& other) const {
+        return h < other.h; 
+    }
+    bool operator>(const Board& other) const {
+        return h > other.h; 
+    }
+    bool operator==(const Board& other) const {
+        return h == other.h; 
+    }
+    bool operator!=(const Board& other) const {
+        return h != other.h; 
+    }
 };
 
 int heuristica(Board &b);
