@@ -6,27 +6,27 @@ void expandBestBoard(){
     Board bestBorad = *tree.begin();
     tree.erase(tree.begin());
 
-    if(canMoveUp(b)){
+    if(canMoveUp(bestBorad)){
 		Board b1;
-		copyBoard(b, b1);
+		copyBoard(bestBorad, b1);
 		addToSolution(b1, moveUp(b1));
         tree.insert(b1);
 	}
-	if(canMoveDown(b)){
+	if(canMoveDown(bestBorad)){
 		Board b2;
-		copyBoard(b, b2);
+		copyBoard(bestBorad, b2);
 		addToSolution(b2, moveDown(b2));
 		tree.insert(b2);
 	}
-	if(canMoveLeft(b)){
+	if(canMoveLeft(bestBorad)){
 		Board b3;
-		copyBoard(b, b3);
+		copyBoard(bestBorad, b3);
 		addToSolution(b3, moveLeft(b3));
 		tree.insert(b3);
 	}
-	if(canMoveRight(b)){
+	if(canMoveRight(bestBorad)){
 		Board b4;
-		copyBoard(b, b4);
+		copyBoard(bestBorad, b4);
 		addToSolution(b4, moveRight(b4));
 		tree.insert(b4);
 	}
@@ -34,7 +34,7 @@ void expandBestBoard(){
 
 
 void resolve(){
-    while(*tree.begin().h != 0){
+    while(tree.begin()->h != 0){
         expandBestBoard();
     }
     showBoard(*tree.begin());

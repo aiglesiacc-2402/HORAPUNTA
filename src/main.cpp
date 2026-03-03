@@ -1,5 +1,5 @@
 #include "Board.h"
-#inlcude "Resolver.h"
+#include "Resolver.h"
 
 const string file = "HORAPUNTA1.txt";
 
