@@ -19,19 +19,36 @@ struct Board{
     int posZ[2];
     string solution;
     int h;
-    Board *father;
 
     bool operator<(const Board& other) const {
-        return h < other.h; 
+        if (h != other.h) return h<other.h; 
+        else{
+            // Desempate por contenido
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
+                    if (board[i][j] != other.board[i][j])
+                        return board[i][j] < other.board[i][j];
+                }
+            }
+        }
+        return false;
     }
     bool operator>(const Board& other) const {
         return h > other.h; 
     }
     bool operator==(const Board& other) const {
-        return h == other.h; 
+        bool equals = true;
+        for(int i = 0; i <MAX_ROWS ; i++){
+            for(int j = 0; j <MAX_COLUMNS ; j++){
+                if(board[i][j] != other.board[i][j]){
+                    equals = false;
+                }
+            }
+        }
+        return equals; 
     }
     bool operator!=(const Board& other) const {
-        return h != other.h; 
+        return !(*this == other); 
     }
 };
 
@@ -66,5 +83,7 @@ char moveDown(Board &b);
 char moveLeft(Board &b);
 
 char moveRight(Board &b);
+
+bool isUsedBoard(Board &b);
 
 #endif /* BOARD_H_ */

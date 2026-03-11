@@ -1,18 +1,21 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe compilar archivo activo",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "label": "Compilar Proyecto Completo",
+            "command": "g++",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "src/main.cpp",
+                "src/Board.cpp",
+                "src/Resolver.cpp",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}/programa.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
@@ -21,8 +24,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Tarea generada por el depurador."
+            "detail": "Tarea para compilar todos los archivos src."
         }
-    ],
-    "version": "2.0.0"
+    ]
 }

@@ -14,11 +14,19 @@ using namespace std;
 #ifndef RESOLVER_H_
 #define RESOLVER_H_
 
-set<Board> tree;
+extern set<Board> tree;
+extern set<Board> usedBoards;
 
+bool isUsedBoard(Board &b);
+
+void expandBoard(Board b);
 
 void expandBestBoard();
 
 void resolve();
+
+void prueba();
+
+
 
 #endif
