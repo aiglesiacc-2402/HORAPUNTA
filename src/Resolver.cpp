@@ -1,5 +1,6 @@
 #include "Resolver.h"
 #include "Board.h"
+#include <ctime> // Para calcular el tiempo de ejecución
 
 set<Board> tree;
 set<Board> usedBoards;
@@ -66,17 +67,29 @@ void expandBestBoard(){
 
 
 void resolve(){
+	clock_t inicio = clock();
+	int exploredNodes = 0;
     while(!tree.empty() && tree.begin()->h != 0){
+		exploredNodes++;
 		cout << "Proceso este estado: " << endl;
 		showBoard(*tree.begin());
 		cout << "h = " << tree.begin()->h << " | posZ = [" << tree.begin()->posZ[0] << "][" << tree.begin()->posZ[1] << "]" << " | posX = [" << tree.begin()->posX[0] << "][" << tree.begin()->posX[1] << "]" << endl;
 		expandBestBoard();
 
     }
+
+	//Cálculo del tiempo de búsqueda
+	clock_t fin = clock();
+    double duracion = double(fin - inicio) / CLOCKS_PER_SEC;
+
 	if(tree.empty())
-		cout << "No hay solucion";
+		cout << "No hay solucion" << endl;
 	else
-		cout << " La solucion es: " + tree.begin()->solution;
+		cout << " La solucion es: " + tree.begin()->solution << endl;
+	
+	cout << "Nodos explorados: " << exploredNodes << endl;
+	cout << "Tiempo de búsqueda: " << duracion*1000 << " ms" << endl;
+
 }
 
 void prueba(){
