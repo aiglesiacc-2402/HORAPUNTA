@@ -6,8 +6,8 @@ int heuristica(Board &b){
 	int max_dist_V = ceil(MAX_ROWS/2);
 	int disX = 0;
 	// Calcular distancia de Z al borde
-	int disZ = min((b.posZ[0] % max_dist_H), (b.posZ[1] % max_dist_V));
-
+	// Elige la distancia menor a un borde
+	int disZ = min(min(min(b.posZ[0], MAX_ROWS - 1 - b.posZ[0]), b.posZ[1]), MAX_COLUMNS - 1 - b.posZ[1]);
 	// Calcular distancia de X a Z
 	if(disZ != 0){
 		if(b.posX[0] >= b.posZ[0]){
@@ -30,9 +30,9 @@ void loadBoard(Board &b, string file){
 	string row;
 
 	if(finalFile.is_open()){
-		for(int i = 0; i < 6; i++){
+		for(int i = 0; i < MAX_ROWS; i++){
             getline(finalFile, row);
-			for(int j = 0; j < 6; j++){
+			for(int j = 0; j < MAX_COLUMNS; j++){
 			    b.board[i][j] = row[j*2];
 				if(row[j*2] == 'X'){
 					b.posX[0] = i;
@@ -75,8 +75,8 @@ void copyBoard(Board b, Board &b2){
 }
 
 void showBoard(const Board b){
-    for(int i = 0; i < 6; i++){
-		for(int j = 0; j < 6; j++){
+    for(int i = 0; i < MAX_ROWS; i++){
+		for(int j = 0; j < MAX_COLUMNS; j++){
 			cout << b.board[i][j]<<" ";
 		}
 		cout<<endl;

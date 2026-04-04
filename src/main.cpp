@@ -2,7 +2,7 @@
 #include "Resolver.h"
 
 using namespace std;
-const string file = "HORAPUNTA1.txt";
+const string file = "HORAPUNTA10.txt";
 
 int main(){
     Board b;

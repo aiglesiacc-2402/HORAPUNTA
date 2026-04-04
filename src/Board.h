@@ -14,7 +14,7 @@ const int MAX_ROWS = 6;
 const int MAX_COLUMNS = 6;
 
 struct Board{
-    char board[6][6];
+    char board[MAX_ROWS][MAX_COLUMNS];
     int posX[2];
     int posZ[2];
     string solution;
@@ -24,8 +24,8 @@ struct Board{
         if (h != other.h) return h<other.h; 
         else{
             // Desempate por contenido
-            for (int i = 0; i < 6; i++) {
-                for (int j = 0; j < 6; j++) {
+            for (int i = 0; i < MAX_ROWS; i++) {
+                for (int j = 0; j < MAX_COLUMNS; j++) {
                     if (board[i][j] != other.board[i][j])
                         return board[i][j] < other.board[i][j];
                 }
