@@ -16,12 +16,13 @@ int main(){
     cout << "[1] Maxima pendiente" << endl;
     cout << "[2] El primero mejor" <<endl;
     cout << "[3] A*" << endl;
+    cout << "[4] Algoritmo de enfriamiento" << endl;
 
     bool flag = false;
     while(!flag){
         cout << "Respuesta: ";
         cin >> respuesta;
-        if(respuesta < 0 || respuesta > 3){
+        if(respuesta < 0 || respuesta > 4){
             cout << "Respuesta no valida" <<endl;
         }
         else flag = true;
@@ -70,6 +71,11 @@ int main(){
         cout << "Resolviendo con A*" << endl;
         tree.insert(b);
         resolveAStar();
+        break;
+
+    case 4:
+        cout << "Resolviendo con Algortimo de enfriamiento" << endl;
+        SimulatedAnnealing(b);
         break;
     default:
         break;

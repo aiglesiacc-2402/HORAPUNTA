@@ -165,3 +165,97 @@ void SteepestAscentHillClimbing(Board b){
     cout << "Nodos explorados: " << nodes << endl;
 	cout << "Tiempo de busqueda: " << time*1000 << " ms" << endl;
 }
+
+void SimulatedAnnealingR(Board &b, int &nodes,double &temperatura,double &factorEnfriamiento,double &temperaturaMinima){
+    char solutionChar;
+    cout << "Proceso este estado:" << endl;
+    showBoard(b);
+    cout << "h = " << b.h << " | posZ = [" << b.posZ[0] << "][" << b.posZ[1] << "]" << " | posX = [" << b.posX[0] << "][" << b.posX[1] << "]" << endl;
+
+    Board better;
+    Board vecino;
+    char betterChar;
+    int delta;
+
+    if(temperatura > temperaturaMinima && b.h != 0){
+
+        int direccion = rand() % 4;
+        bool aceptado = false;
+
+        if(canMoveUp(b) && direccion == 0){
+            nodes++; 
+            copyBoard(b, vecino);
+            solutionChar = moveUp(vecino);
+            vecino.h = heuristica(vecino);
+            delta = vecino.h - b.h;  
+            aceptado = true;     
+         }
+    
+        if(canMoveDown(b) && direccion == 1){
+            nodes++; 
+            copyBoard(b, vecino);
+            solutionChar = moveDown(vecino);
+            vecino.h = heuristica(vecino);
+            delta = vecino.h - b.h;
+            aceptado = true;
+    }
+        if(canMoveLeft(b)&& direccion == 2){
+            nodes++; 
+            copyBoard(b, vecino);
+            solutionChar = moveLeft(vecino);
+            vecino.h = heuristica(vecino);
+            delta = vecino.h - b.h;
+            aceptado = true;
+    }
+        if(canMoveRight(b)&& direccion == 3){
+            nodes++; 
+            copyBoard(b, vecino);
+            solutionChar = moveRight(vecino);
+            vecino.h = heuristica(vecino);
+            delta = vecino.h - b.h;
+            aceptado = true;
+    }
+
+    if(!aceptado){
+        temperatura *= factorEnfriamiento;
+        SimulatedAnnealingR(b, nodes,temperatura,factorEnfriamiento,temperaturaMinima);
+    }
+        if(aceptado){
+            if(delta < 0){
+                betterChar = solutionChar;
+                b = vecino;
+                addToSolution(b, betterChar);
+            }else{
+            double probabilidad = exp(-delta / temperatura);
+            double numeroAzar = (double)rand() / RAND_MAX;
+            if (numeroAzar < probabilidad) {
+                betterChar = solutionChar;
+                b = vecino;
+                addToSolution(b, betterChar);
+            }
+        }
+            temperatura *= factorEnfriamiento;
+            SimulatedAnnealingR(b, nodes,temperatura,factorEnfriamiento,temperaturaMinima);
+    }
+  }
+}
+
+void SimulatedAnnealing(Board b){
+    clock_t start = clock();
+    double temperatura = 100;
+    double factorEnfriamiento = 0.95;
+    double temperaturaMinima = 1;
+    int nodes = 0;
+    if(b.h != 0 && canMove(b)){
+        nodes++;
+        SimulatedAnnealingR(b, nodes,temperatura,factorEnfriamiento,temperaturaMinima);
+    }
+    clock_t end = clock();
+    double time = double(end - start) / CLOCKS_PER_SEC;
+    if(nodes == 0 || b.h != 0)
+        cout << "No hay solucion" << endl;
+    else
+        cout << " La solucion es: " + b.solution << endl;
+    cout << "Nodos explorados: " << nodes << endl;
+	cout << "Tiempo de busqueda: " << time*1000 << " ms" << endl;
+}

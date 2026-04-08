@@ -88,7 +88,7 @@ void resolve(){
 		cout << " La solucion es: " + tree.begin()->solution << endl;
 	
 	cout << "Nodos explorados: " << exploredNodes << endl;
-	cout << "Tiempo de búsqueda: " << duracion*1000 << " ms" << endl;
+	cout << "Tiempo de busqueda: " << duracion*1000 << " ms" << endl;
 
 }
 
@@ -171,7 +171,7 @@ void resolveAStar(){	clock_t inicio = clock();
 		cout << " La solucion es: " + tree.begin()->solution << endl;
 	
 	cout << "Nodos explorados: " << exploredNodes << endl;
-	cout << "Tiempo de búsqueda: " << duracion*1000 << " ms" << endl;
+	cout << "Tiempo de busqueda: " << duracion*1000 << " ms" << endl;
 
 }
 
