@@ -13,12 +13,14 @@ int main(){
     cout << "Seleccione: " << endl;
     cout << "[0] Escalada simple" << endl;
     cout << "[1] Maxima pendiente" << endl;
-    cout << "[2] El primer mejor" <<endl;
+    cout << "[2] El primero mejor" <<endl;
+    cout << "[3] A*" << endl;
+
     bool flag = false;
     while(!flag){
         cout << "Respuesta: ";
         cin >> respuesta;
-        if(respuesta < 0 || respuesta > 2){
+        if(respuesta < 0 || respuesta > 3){
             cout << "Respuesta no valida" <<endl;
         }
         else flag = true;
@@ -42,6 +44,11 @@ int main(){
         cout << "Resolviendo con primero mejor" << endl;
         tree.insert(b);
         resolve();
+        break;
+    case 3:
+        cout << "Resolviendo con A*" << endl;
+        tree.insert(b);
+        resolveAStar();
         break;
     default:
         break;

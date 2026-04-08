@@ -19,9 +19,12 @@ struct Board{
     int posZ[2];
     string solution;
     int h;
+    int g=0; // iniciado a 0 de base para prevenir problemas
 
     bool operator<(const Board& other) const {
-        if (h != other.h) return h<other.h; 
+        int f = g+h;
+        int otherF = other.g + other.h;
+        if (f != otherF) return f<otherF; 
         else{
             // Desempate por contenido
             for (int i = 0; i < MAX_ROWS; i++) {
@@ -34,7 +37,7 @@ struct Board{
         return false;
     }
     bool operator>(const Board& other) const {
-        return h > other.h; 
+        return (h+g) > (other.h + other.g); 
     }
     bool operator==(const Board& other) const {
         bool equals = true;

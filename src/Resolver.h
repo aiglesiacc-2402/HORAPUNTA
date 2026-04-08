@@ -25,6 +25,12 @@ void expandBestBoard();
 
 void resolve();
 
+void expandBoardAStar(Board b);
+
+void expandBestBoardAStar();
+
+void resolveAStar();
+
 void prueba();
 
 
