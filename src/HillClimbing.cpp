@@ -77,7 +77,7 @@ void SimpleHillClimbing(Board &b){
     else
         cout << " La solucion es: " + b.solution << endl;
     cout << "Nodos explorados: " << nodes << endl;
-	cout << "Tiempo de búsqueda: " << time*1000 << " ms" << endl;
+	cout << "Tiempo de busqueda: " << time*1000 << " ms" << endl;
 }
 
 void SteepestAscentHillClimbingR(Board &b, int &nodes){
@@ -163,5 +163,5 @@ void SteepestAscentHillClimbing(Board b){
     else
         cout << " La solucion es: " + b.solution << endl;
     cout << "Nodos explorados: " << nodes << endl;
-	cout << "Tiempo de búsqueda: " << time*1000 << " ms" << endl;
+	cout << "Tiempo de busqueda: " << time*1000 << " ms" << endl;
 }

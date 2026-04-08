@@ -11,7 +11,7 @@ int main(){
     cout << "-----------------" << endl;
     cout << "--- HORAPUNTA ---" << endl;
     cout << "-----------------" << endl;
-    cout << "Seleccione el ALGORITMO DE RESOLUCIÓN: " << endl;
+    cout << "Seleccione el ALGORITMO DE RESOLUCION: " << endl;
     cout << "[0] Escalada simple" << endl;
     cout << "[1] Maxima pendiente" << endl;
     cout << "[2] El primero mejor" <<endl;
@@ -35,8 +35,8 @@ int main(){
     flag = false;
     while(!flag){
         cout << "Tablero: ";
-        cin >> respuesta;
-        if(respuesta < 1 || respuesta > 10){
+        cin >> tablero;
+        if(tablero < 1 || tablero > 10){
             cout << "Tablero no existente" <<endl;
         }
         else{
