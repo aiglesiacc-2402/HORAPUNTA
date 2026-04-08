@@ -3,14 +3,15 @@
 #include "HillClimbing.h"
 
 using namespace std;
-const string file = "HORAPUNTA6.txt";
+string base = "HORAPUNTA";
+string file;
 
 int main(){
     int respuesta = -1;
     cout << "-----------------" << endl;
     cout << "--- HORAPUNTA ---" << endl;
     cout << "-----------------" << endl;
-    cout << "Seleccione: " << endl;
+    cout << "Seleccione el ALGORITMO DE RESOLUCIÓN: " << endl;
     cout << "[0] Escalada simple" << endl;
     cout << "[1] Maxima pendiente" << endl;
     cout << "[2] El primero mejor" <<endl;
@@ -25,6 +26,26 @@ int main(){
         }
         else flag = true;
     }
+
+    int tablero = -1;
+    cout << "-----------------" << endl;
+    cout << "--- HORAPUNTA ---" << endl;
+    cout << "-----------------" << endl;
+    cout << "Seleccione el TABLERO a resolver [1,10]: " << endl;
+    flag = false;
+    while(!flag){
+        cout << "Tablero: ";
+        cin >> respuesta;
+        if(respuesta < 1 || respuesta > 10){
+            cout << "Tablero no existente" <<endl;
+        }
+        else{
+            file = base + to_string(tablero) + ".txt"; //Esta línea cambia el numero del tablero a cargar accediendo a la posición del número
+            flag = true;
+        }
+    }
+    
+
     Board b;
     loadBoard(b, file);
     showBoard(b);
