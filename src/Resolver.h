@@ -25,6 +25,7 @@ void expandBestBoard();
 
 void resolve();
 
+// Estos tres métodos de A* duplican mucho codigo de los 3 métodos anteriores por velocidad y facilidad a la hora de crearlos pero no importa
 void expandBoardAStar(Board b);
 
 void expandBestBoardAStar();
